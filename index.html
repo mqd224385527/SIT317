@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .hero {
+            background: url('image.png') no-repeat center center;
+            background-size: cover;
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-text {
+            max-width: 800px;
+        }
+        
+        .hero-image {
+            max-width: 500px;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .features-section {
+            background-color: #ffffff;
+            padding: 60px 0;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-bg);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--primary-color);
+        }
+        
+        .feature-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .testimonials-section {
+            background-color: var(--light-bg);
+            padding: 60px 0;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .testimonial-info h4 {
+            margin: 0;
+            color: var(--text-color);
+        }
+        
+        .testimonial-info p {
+            margin: 5px 0 0 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #ffffff;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                margin-bottom: 40px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="logo.jpg" alt="Campus Connect Logo">
+                <h1>Campus Connect</h1>
+            </div>
+            
+            <div class="navbar-tabs">
+                <a href="#" class="navbar-tab active">Home</a>
+                <a href="#" class="navbar-tab">Academic</a>
+                <a href="#" class="navbar-tab">Clubs</a>
+            </div>
+            
+            <div class="navbar-actions">
+                <button class="icon-button"><i class="fas fa-search"></i></button>
+                <a href="login.html" class="btn">Sign In</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Your one-stop campus life manager</h1>
+                <p>Easily connect with your classes, clubs, and campus activities. Stay organized and never miss any important events.</p>
+                <div class="hero-buttons">
+                    <a href="register.html" class="btn">Register for free</a>
+                    <a href="#features" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 特色区域 -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="page-header">
+                <h2 class="page-title">Why Choose Campus Connect?</h2>
+                <p class="page-subtitle">We make your campus life easier and more organized.</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Access your schedule instantly</h3>
+                    <p>Unified Dashboard with all your classes, meetings, and events in one place.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Real-Time Notifications</h3>
+                    <p>Stay updated on events and announcements from your classes and clubs.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3 class="feature-title">Request assistance</h3>
+                    <p>Get help with a tap when you need support with your studies or campus activities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 推荐区域 -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="page-header">
+                <h2 class="page-title">What Students Say</h2>
+                <p class="page-subtitle">Hear from our community of students.</p>
+            </div>
+            
+            <div class="grid grid-2">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Campus Connect has completely changed how I manage my university life. I never miss a class or event now!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JS</div>
+                        <div class="testimonial-info">
+                            <h4>James Smith</h4>
+                            <p>Engineering Student</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a club leader, this platform makes it so easy to communicate with members and organize activities."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">EL</div>
+                        <div class="testimonial-info">
+                            <h4>Emma Lee</h4>
+                            <p>Photography Club President</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 行动召唤区域 -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="page-title">Ready to Enhance Your Campus Experience?</h2>
+            <p class="page-subtitle mb-20">Join thousands of students who are making the most of their college life.</p>
+            <a href="register.html" class="btn btn-secondary">Register Now - It's Free!</a>
+        </div>
+    </section>
+
+    <script>
+        // 滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

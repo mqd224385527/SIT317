@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Campus Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .welcome-banner {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .welcome-text h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .welcome-text p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .dashboard-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .view-all {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        .schedule-table th, 
+        .schedule-table td {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .schedule-table th {
+            background-color: #f5f5f5;
+            font-weight: 500;
+        }
+
+        .course {
+            background-color: #e3f2fd;
+            border-radius: 4px;
+            padding: 6px;
+            font-size: 0.9rem;
+        }
+
+        .notification-list,
+        .chat-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notification-item,
+        .chat-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .notification-icon,
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #e3f2fd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .notification-content,
+        .chat-content {
+            flex: 1;
+        }
+
+        .notification-title,
+        .chat-sender {
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .notification-time,
+        .chat-time {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-card {
+            flex: 1;
+            min-width: 120px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .action-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .action-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .theme-selector {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .theme-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s;
+        }
+
+        .theme-option:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-option.selected {
+            border-color: var(--primary-color);
+        }
+
+        .theme-blue {
+            background-color: #4285f4;
+        }
+
+        .theme-purple {
+            background-color: #673ab7;
+        }
+
+        .theme-green {
+            background-color: #4caf50;
+        }
+
+        .theme-orange {
+            background-color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="logo.jpg" alt="Campus Connect Logo">
+                <h1>Campus Connect</h1>
+            </div>
+            
+            <div class="navbar-tabs">
+                <a href="index.html" class="navbar-tab">Home</a>
+                <a href="#" class="navbar-tab active">Dashboard</a>
+                <a href="#" class="navbar-tab">Calendar</a>
+            </div>
+            
+            <div class="navbar-actions">
+                <button class="icon-button"><i class="fas fa-bell"></i></button>
+                <button class="icon-button"><i class="fas fa-cog"></i></button>
+                <button class="icon-button"><i class="fas fa-user-circle"></i></button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container page-container">
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Hello, <span id="username">Qingda</span>!</h2>
+                <p>Welcome back to your campus hub.</p>
+            </div>
+            <div class="welcome-actions">
+                <button class="btn btn-outline" style="color: white; border-color: white;">View Profile</button>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-main">
+                <div class="dashboard-section">
+                    <div class="section-title">
+                        <h3>My Schedule</h3>
+                        <a href="schedule-detail.html" class="view-all">View All <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <table class="schedule-table">
+                            <tr>
+                                <th>Time</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                            </tr>
+                            <tr>
+                                <td>9:00</td>
+                                <td></td>
+                                <td><div class="course">IT Course</div></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11:00</td>
+                                <td></td>
+                                <td></td>
+                                <td><div class="course">English</div></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="dashboard-section">
+                    <div class="section-title">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="quick-actions">
+                        <div class="action-card" onclick="window.location.href='add-schedule.html'">
+                            <div class="action-icon"><i class="fas fa-calendar-plus"></i></div>
+                            <div class="action-title">Add Schedule</div>
+                        </div>
+                        <div class="action-card" onclick="window.location.href='#'">
+                            <div class="action-icon"><i class="fas fa-users"></i></div>
+                            <div class="action-title">Join Club</div>
+                        </div>
+                        <div class="action-card" onclick="window.location.href='chat-detail.html'">
+                            <div class="action-icon"><i class="fas fa-comments"></i></div>
+                            <div class="action-title">Chat</div>
+                        </div>
+                        <div class="action-card" onclick="window.location.href='#'">
+                            <div class="action-icon"><i class="fas fa-book"></i></div>
+                            <div class="action-title">Resources</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-section">
+                    <div class="section-title">
+                        <h3>Public Chat</h3>
+                        <a href="chat-detail.html" class="view-all">View All <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <ul class="chat-list" id="chat-messages">
+                            <!-- Public chat messages will appear here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-sidebar">
+                <div class="dashboard-section">
+                    <div class="section-title">
+                        <h3>Notifications</h3>
+                        <a href="notification-detail.html" class="view-all">View All <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <ul class="notification-list">
+                            <li class="notification-item">
+                                <div class="notification-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Club Notification</div>
+                                    <div class="notification-text">Photography club meeting tomorrow at 5pm</div>
+                                    <div class="notification-time">2 hours ago</div>
+                                </div>
+                            </li>
+                            <li class="notification-item">
+                                <div class="notification-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Message from Teacher</div>
+                                    <div class="notification-text">Assignment deadline extended to Friday</div>
+                                    <div class="notification-time">Yesterday</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="dashboard-section">
+                    <div class="section-title">
+                        <h3>Appearance</h3>
+                    </div>
+                    <div class="card">
+                        <div class="form-group">
+                            <label class="form-label">Theme</label>
+                            <div class="theme-selector">
+                                <div class="theme-option theme-blue selected" data-theme="blue"></div>
+                                <div class="theme-option theme-purple" data-theme="purple"></div>
+                                <div class="theme-option theme-green" data-theme="green"></div>
+                                <div class="theme-option theme-orange" data-theme="orange"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Dark Mode</label>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        // 加载最新的聊天消息预览
+        function loadChatPreview() {
+            const chatContainer = document.getElementById('chat-messages');
+            const messages = ChatManager.getMessages().slice(-3); // 只显示最新的3条消息
+            
+            if (messages.length === 0) {
+                chatContainer.innerHTML = `
+                    <li class="chat-item">
+                        <div class="chat-avatar">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="chat-content">
+                            <div class="chat-sender">System</div>
+                            <div class="chat-text">No messages yet. Start a conversation!</div>
+                            <div class="chat-time">Just now</div>
+                        </div>
+                    </li>
+                `;
+                return;
+            }
+            
+            chatContainer.innerHTML = messages.map(message => `
+                <li class="chat-item">
+                    <div class="chat-avatar">
+                        ${message.userId === 'user1' ? '<i class="fas fa-user"></i>' : '<i class="fas fa-user-friends"></i>'}
+                    </div>
+                    <div class="chat-content">
+                        <div class="chat-sender">${message.userName}</div>
+                        <div class="chat-text">${message.text}</div>
+                        <div class="chat-time">${ChatManager.formatTime(message.timestamp)}</div>
+                    </div>
+                </li>
+            `).join('');
+        }
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', () => {
+            loadChatPreview();
+            
+            // 设置主题切换
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.theme-option').forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    // 这里可以实现主题切换的逻辑
+                });
+            });
+        });
+
+        // 定期更新聊天预览
+        setInterval(loadChatPreview, 5000);
+    </script>
+</body>
+</html> 
